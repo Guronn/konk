@@ -241,8 +241,45 @@ while True:
 
 
 
+# ЭТО ХЗ ЧТО , ЧТО ТО С С++
 
+humiditySensorPin = A0
+relayPin = 8
 
+def setup():
+    pinMode(relayPin, OUTPUT)
+    Serial.begin(9600)
 
+def loop():
+    humiditySensorValue = analogRead(humiditySensorPin)
+    Serial.print("Humidity sensor: ")
+    Serial.println(humiditySensorValue)
+
+    if humiditySensorValue < 500:
+        digitalWrite(relayPin, HIGH)
+        delay(10000)
+        digitalWrite(relayPin, LOW)
+        delay(600000)
+    else:
+        delay(1000)
+
+lightSensorPin = A0
+ledPin = 8
+
+def setup():
+    pinMode(ledPin, OUTPUT)
+    Serial.begin(9600)
+
+def loop():
+    lightSensorValue = analogRead(lightSensorPin)
+    Serial.print("Light sensor: ")
+    Serial.println(lightSensorValue)
+
+    if lightSensorValue < 500:
+        digitalWrite(ledPin, HIGH)
+    else:
+        digitalWrite(ledPin, LOW)
+
+    delay(1000)
 
 
