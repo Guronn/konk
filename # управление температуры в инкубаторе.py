@@ -282,4 +282,26 @@ def loop():
 
     delay(1000)
 
+    
+    
+    # определение уровня воды
+python
+import RPi.GPIO as GPIO
+import time
 
+# Установка пина для чтения данных с датчика уровня воды
+water_level_pin = 18
+GPIO.setmode(GPIO.BCM)
+GPIO.setup(water_level_pin, GPIO.IN)
+
+# Функция для определения уровня воды
+def check_water_level():
+    if GPIO.input(water_level_pin):
+        print("Вода есть в баке")
+    else:
+        print("Бак пуст")
+
+# Чтение уровня воды каждые 5 секунд
+while True:
+    check_water_level()
+    time.sleep(5)
